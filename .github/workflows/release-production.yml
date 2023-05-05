@@ -31,17 +31,23 @@ jobs:
 
       - name: Configure docker
         run: |-
-          gcloud --quiet auth configure-docker us-docker.pkg.dev
-
+          gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
       - name: Build image
         run: |-
-          docker build -f packages/api/Dockerfile -t "us-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA" .
+          docker build -f packages/api/Dockerfile -t "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker
+      - name: Build image/api:$GITHUB_SHA" .
       - name: Publish image
         run: |-
-          docker tag "us-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA" "us-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA-production"
-          docker tag "us-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA" "us-docker.pkg.dev/$PROJECT_ID/tracker/api:production"
-          docker push "us-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA-production"
-          docker push "us-docker.pkg.dev/$PROJECT_ID/tracker/api:production"
+          docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker
+      - name: Build image/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker
+      - name: Build image/api:$GITHUB_SHA-production"
+          docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker
+      - name: Build image/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker
+      - name: Build image/api:production"
+          docker push "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker
+      - name: Build image/api:$GITHUB_SHA-production"
+          docker push "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker
+      - name: Build image/api:production"
 
       - name: Release API
         run: |-
@@ -49,5 +55,9 @@ jobs:
           curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl  > /dev/null
           chmod u+x ./kubectl
           ./kubectl apply -f .k8s/production
-          ./kubectl set image deployment/tracker-api-server tracker-api-server=us-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA-production -n production
-          ./kubectl rollout restart deployment/tracker-api-server -n production
+          ./kubectl set image deployment/time-tracker
+      - name: Build image-api-server time-tracker
+      - name: Build image-api-server=us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker
+      - name: Build image/api:$GITHUB_SHA-production -n production
+          ./kubectl rollout restart deployment/time-tracker
+      - name: Build image-api-server -n production
