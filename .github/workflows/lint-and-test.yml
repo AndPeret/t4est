@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   lint:
-    name: Lint projects
+    name: Lint and test project
     runs-on: ubuntu-22.04
     strategy:
       matrix:
