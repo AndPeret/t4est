@@ -1,7 +1,5 @@
 name: Release Production
-on:
-  release:
-    types: [published]
+on: [push]
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
