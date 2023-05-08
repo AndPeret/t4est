@@ -46,6 +46,7 @@ jobs:
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
           curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl  > /dev/null
           chmod u+x ./kubectl
+          gcloud container clusters get-credentials tracker
           ./kubectl apply -f .k8s/production
           ./kubectl set image deployment/tracker-api-server time-tracker-api-server=us-central1-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA-production -n production
           ./kubectl rollout restart deployment/tracker-api-server -n production
