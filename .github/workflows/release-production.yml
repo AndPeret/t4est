@@ -33,13 +33,13 @@ jobs:
 
       - name: Build image
         run: |-
-          docker build -f packages/api/Dockerfile -t "us-central1-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA" .
+          docker build -f packages/api/Dockerfile -t "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA" .
       - name: Publish image
         run: |-
-          docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA-production"
-          docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/tracker/api:production"
-          docker push "us-central1-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA-production"
-          docker push "us-central1-docker.pkg.dev/$PROJECT_ID/tracker/api:production"
+          docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production"
+          docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:production"
+          docker push "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production"
+          docker push "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:production"
 
       - name: Release API
         run: |-
@@ -48,5 +48,5 @@ jobs:
           chmod u+x ./kubectl
           gcloud container clusters get-credentials tracker
           ./kubectl apply -f .k8s/production
-          ./kubectl set image deployment/tracker-api-server time-tracker-api-server=us-central1-docker.pkg.dev/$PROJECT_ID/tracker/api:$GITHUB_SHA-production -n production
-          ./kubectl rollout restart deployment/tracker-api-server -n production
+          ./kubectl set image deployment/time-tracker-api-server time-tracker-api-server=us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production -n production
+          ./kubectl rollout restart deployment/time-tracker-api-server -n production
