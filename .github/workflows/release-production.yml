@@ -31,15 +31,15 @@ jobs:
         run: |-
           gcloud --quiet auth configure-docker us-central1-docker.pkg.dev
 
-      - name: Build image
-        run: |-
-          docker build -f packages/api/Dockerfile -t "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA" .
-      - name: Publish image
-        run: |-
-          docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production"
-          docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:production"
-          docker push "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production"
-          docker push "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:production"
+      # - name: Build image
+      #   run: |-
+      #     docker build -f packages/api/Dockerfile -t "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA" .
+      # - name: Publish image
+      #   run: |-
+      #     docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production"
+      #     docker tag "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA" "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:production"
+      #     docker push "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production"
+      #     docker push "us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:production"
 
       - name: Release API
         run: |-
