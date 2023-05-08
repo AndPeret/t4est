@@ -13,7 +13,7 @@ spec:
         app: time-tracker
     spec:
       containers:
-        - name: time-tracker-container
+        - name: time-tracker
           image: us-central1-docker.pkg.dev/time-tracker-385712/time-tracker/api:production
           env:
             - name: MONGO_URI
