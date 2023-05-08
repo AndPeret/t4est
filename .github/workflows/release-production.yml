@@ -43,8 +43,8 @@ jobs:
 
       - name: Release API
         run: |-
-          curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl  > /dev/null
-          chmod u+x ./kubectl
+          gcloud components install gke-gcloud-auth-plugin kubectl --quiet 1> /dev/null
+          export USE_GKE_GCLOUD_AUTH_PLUGIN=True
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
           ./kubectl apply -f .k8s/production
           ./kubectl set image deployment/time-tracker-api-server time-tracker-api-server=us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production -n production
