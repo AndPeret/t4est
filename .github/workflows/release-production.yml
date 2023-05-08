@@ -33,5 +33,5 @@ jobs:
           export USE_GKE_GCLOUD_AUTH_PLUGIN=True
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
           kubectl apply -f .k8s/production
-          kubectl set image deployment/time-tracker-api-server time-tracker-api-server=us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production
-          kubectl rollout restart deployment/time-tracker-api-server -n
+          kubectl set image deployment/time-tracker time-tracker=us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production
+          kubectl rollout restart deployment/time-tracker -n
