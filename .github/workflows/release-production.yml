@@ -43,7 +43,7 @@ jobs:
 
       - name: Release API
         run: |-
-          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+          gcloud container clusters get-credentials tracker --zone us-central1-a
           curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl  > /dev/null
           chmod u+x ./kubectl
           gcloud container clusters get-credentials tracker
