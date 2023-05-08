@@ -1,5 +1,8 @@
 name: Release Production
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
@@ -46,6 +49,6 @@ jobs:
           gcloud components install gke-gcloud-auth-plugin kubectl --quiet 1> /dev/null
           export USE_GKE_GCLOUD_AUTH_PLUGIN=True
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
-          kubectl apply -f .k8s/production
+          envsubst < .k8s/production/production.yml | kubectl apply -f -
           kubectl set image deployment/time-tracker tracker=us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:$GITHUB_SHA-production
           kubectl rollout restart deployment/time-tracker

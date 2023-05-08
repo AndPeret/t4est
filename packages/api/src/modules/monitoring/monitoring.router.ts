@@ -27,7 +27,7 @@ router.get(
         isApiAvailable ? 200 : 500,
         {
           pong: true,
-          test: 'v2',
+          test: 'v3',
         },
         req.query?.format,
       );

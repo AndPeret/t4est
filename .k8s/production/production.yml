@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: tracker
-          image: us-central1-docker.pkg.dev/time-tracker-385712/time-tracker/api:production
+          image: 'us-central1-docker.pkg.dev/$PROJECT_ID/time-tracker/api:production'
           env:
             - name: MONGO_URI
               valueFrom:
