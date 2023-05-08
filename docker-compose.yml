@@ -7,13 +7,13 @@ services:
     env_file: packages/api/docker.env
     ports:
       - 4000:4000
-    image: notes/notes-api
+    image: tracker/tracker-api
 
   mongo:
     image: mongo:6.0
     environment:
-      MONGO_INITDB_ROOT_USERNAME: notesservice
-      MONGO_INITDB_ROOT_PASSWORD: notesservice
+      MONGO_INITDB_ROOT_USERNAME: tracker
+      MONGO_INITDB_ROOT_PASSWORD: tracker
     ports:
       - 27017:27017
     volumes:

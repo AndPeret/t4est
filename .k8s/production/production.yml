@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-node-app
+  name: time-tracker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-node-app
+      app: time-tracker
   template:
     metadata:
       labels:
-        app: my-node-app
+        app: time-tracker
     spec:
       containers:
-        - name: my-node-app-container
+        - name: time-tracker-container
           image: us-central1-docker.pkg.dev/time-tracker-385712/time-tracker/api:production
           env:
             - name: MONGO_URI
@@ -29,10 +29,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-node-app
+  name: time-tracker
 spec:
   selector:
-    app: my-node-app
+    app: time-tracker
   ports:
     - protocol: TCP
       port: 80
